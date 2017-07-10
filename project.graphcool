@@ -1,0 +1,37 @@
+# project: cj4bry2yvwe340172mr28lf81
+# version: 15
+
+type Bais implements Node {
+  cookingOnDays: Days @relation(name: "DaysOnBais")
+  createdAt: DateTime!
+  eatingOnDays: [Days!]! @relation(name: "BaisOnDays")
+  id: ID! @isUnique
+  name: String!
+  updatedAt: DateTime!
+}
+
+type Days implements Node {
+  cooking: [Bais!]! @relation(name: "DaysOnBais")
+  createdAt: DateTime!
+  date: DateTime! @isUnique
+  eating: [Bais!]! @relation(name: "BaisOnDays")
+  id: ID! @isUnique
+  updatedAt: DateTime!
+}
+
+type File implements Node {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type User implements Node {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+}
