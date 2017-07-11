@@ -1,16 +1,24 @@
 # project: cj4bry2yvwe340172mr28lf81
-# version: 15
+# version: 17
+
+type Post implements Node {
+  description: String!
+  imageUrl: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+}
 
 type Bais implements Node {
-  cookingOnDays: Days @relation(name: "DaysOnBais")
+  cookingOnDays: Day @relation(name: "DaysOnBais")
   createdAt: DateTime!
-  eatingOnDays: [Days!]! @relation(name: "BaisOnDays")
+  eatingOnDays: [Day!]! @relation(name: "BaisOnDays")
   id: ID! @isUnique
   name: String!
   updatedAt: DateTime!
 }
 
-type Days implements Node {
+type Day implements Node {
   cooking: [Bais!]! @relation(name: "DaysOnBais")
   createdAt: DateTime!
   date: DateTime! @isUnique

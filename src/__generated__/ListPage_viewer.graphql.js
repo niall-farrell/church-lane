@@ -9,7 +9,7 @@
 /*::
 import type {ConcreteFragment} from 'relay-runtime';
 export type ListPage_viewer = {|
-  +allPosts: {|
+  +allDays: {|
     +edges: ?$ReadOnlyArray<?{|
       +node: {| |};
     |}>;
@@ -28,7 +28,7 @@ const fragment /*: ConcreteFragment*/ = {
         "cursor": null,
         "direction": "backward",
         "path": [
-          "allPosts"
+          "allDays"
         ]
       }
     ]
@@ -37,17 +37,17 @@ const fragment /*: ConcreteFragment*/ = {
   "selections": [
     {
       "kind": "LinkedField",
-      "alias": "allPosts",
+      "alias": "allDays",
       "args": null,
-      "concreteType": "PostConnection",
-      "name": "__ListPage_allPosts_connection",
+      "concreteType": "DayConnection",
+      "name": "__ListPage_allDays_connection",
       "plural": false,
       "selections": [
         {
           "kind": "LinkedField",
           "alias": null,
           "args": null,
-          "concreteType": "PostEdge",
+          "concreteType": "DayEdge",
           "name": "edges",
           "plural": true,
           "selections": [
@@ -55,13 +55,13 @@ const fragment /*: ConcreteFragment*/ = {
               "kind": "LinkedField",
               "alias": null,
               "args": null,
-              "concreteType": "Post",
+              "concreteType": "Day",
               "name": "node",
               "plural": false,
               "selections": [
                 {
                   "kind": "FragmentSpread",
-                  "name": "Post_post",
+                  "name": "Day_day",
                   "args": null
                 }
               ],

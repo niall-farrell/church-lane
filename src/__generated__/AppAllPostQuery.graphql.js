@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e44182d8c188dd486ce500dc00ea2f32
+ * @relayHash fb18a2c312171cbd8cafa0178a8d5d37
  */
 
 /* eslint-disable */
@@ -24,14 +24,14 @@ query AppAllPostQuery {
 }
 
 fragment ListPage_viewer on Viewer {
-  allPosts(last: 100, orderBy: createdAt_DESC) {
+  allDays(last: 100, orderBy: createdAt_DESC) {
     edges {
       node {
-        ...Post_post
+        ...Day_day
         id
       }
     }
-    ... on PostConnection {
+    ... on DayConnection {
       edges {
         cursor
         node {
@@ -49,10 +49,30 @@ fragment ListPage_viewer on Viewer {
   }
 }
 
-fragment Post_post on Post {
+fragment Day_day on Day {
   id
-  description
-  imageUrl
+  date
+  cooking {
+    edges {
+      node {
+        ...Bai_bai
+        id
+      }
+    }
+  }
+  eating {
+    edges {
+      node {
+        ...Bai_bai
+        id
+      }
+    }
+  }
+}
+
+fragment Bai_bai on Bais {
+  id
+  name
 }
 */
 
@@ -125,18 +145,18 @@ const batch /*: ConcreteBatch*/ = {
                     "kind": "Literal",
                     "name": "orderBy",
                     "value": "createdAt_DESC",
-                    "type": "PostOrderBy"
+                    "type": "DayOrderBy"
                   }
                 ],
-                "concreteType": "PostConnection",
-                "name": "allPosts",
+                "concreteType": "DayConnection",
+                "name": "allDays",
                 "plural": false,
                 "selections": [
                   {
                     "kind": "LinkedField",
                     "alias": null,
                     "args": null,
-                    "concreteType": "PostEdge",
+                    "concreteType": "DayEdge",
                     "name": "edges",
                     "plural": true,
                     "selections": [
@@ -144,7 +164,7 @@ const batch /*: ConcreteBatch*/ = {
                         "kind": "LinkedField",
                         "alias": null,
                         "args": null,
-                        "concreteType": "Post",
+                        "concreteType": "Day",
                         "name": "node",
                         "plural": false,
                         "selections": [
@@ -157,20 +177,119 @@ const batch /*: ConcreteBatch*/ = {
                           },
                           {
                             "kind": "InlineFragment",
-                            "type": "Post",
+                            "type": "Day",
                             "selections": [
                               {
                                 "kind": "ScalarField",
                                 "alias": null,
                                 "args": null,
-                                "name": "description",
+                                "name": "date",
                                 "storageKey": null
                               },
                               {
-                                "kind": "ScalarField",
+                                "kind": "LinkedField",
                                 "alias": null,
                                 "args": null,
-                                "name": "imageUrl",
+                                "concreteType": "BaisConnection",
+                                "name": "cooking",
+                                "plural": false,
+                                "selections": [
+                                  {
+                                    "kind": "LinkedField",
+                                    "alias": null,
+                                    "args": null,
+                                    "concreteType": "BaisEdge",
+                                    "name": "edges",
+                                    "plural": true,
+                                    "selections": [
+                                      {
+                                        "kind": "LinkedField",
+                                        "alias": null,
+                                        "args": null,
+                                        "concreteType": "Bais",
+                                        "name": "node",
+                                        "plural": false,
+                                        "selections": [
+                                          {
+                                            "kind": "ScalarField",
+                                            "alias": null,
+                                            "args": null,
+                                            "name": "id",
+                                            "storageKey": null
+                                          },
+                                          {
+                                            "kind": "InlineFragment",
+                                            "type": "Bais",
+                                            "selections": [
+                                              {
+                                                "kind": "ScalarField",
+                                                "alias": null,
+                                                "args": null,
+                                                "name": "name",
+                                                "storageKey": null
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "storageKey": null
+                                      }
+                                    ],
+                                    "storageKey": null
+                                  }
+                                ],
+                                "storageKey": null
+                              },
+                              {
+                                "kind": "LinkedField",
+                                "alias": null,
+                                "args": null,
+                                "concreteType": "BaisConnection",
+                                "name": "eating",
+                                "plural": false,
+                                "selections": [
+                                  {
+                                    "kind": "LinkedField",
+                                    "alias": null,
+                                    "args": null,
+                                    "concreteType": "BaisEdge",
+                                    "name": "edges",
+                                    "plural": true,
+                                    "selections": [
+                                      {
+                                        "kind": "LinkedField",
+                                        "alias": null,
+                                        "args": null,
+                                        "concreteType": "Bais",
+                                        "name": "node",
+                                        "plural": false,
+                                        "selections": [
+                                          {
+                                            "kind": "ScalarField",
+                                            "alias": null,
+                                            "args": null,
+                                            "name": "id",
+                                            "storageKey": null
+                                          },
+                                          {
+                                            "kind": "InlineFragment",
+                                            "type": "Bais",
+                                            "selections": [
+                                              {
+                                                "kind": "ScalarField",
+                                                "alias": null,
+                                                "args": null,
+                                                "name": "name",
+                                                "storageKey": null
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "storageKey": null
+                                      }
+                                    ],
+                                    "storageKey": null
+                                  }
+                                ],
                                 "storageKey": null
                               }
                             ]
@@ -183,13 +302,13 @@ const batch /*: ConcreteBatch*/ = {
                   },
                   {
                     "kind": "InlineFragment",
-                    "type": "PostConnection",
+                    "type": "DayConnection",
                     "selections": [
                       {
                         "kind": "LinkedField",
                         "alias": null,
                         "args": null,
-                        "concreteType": "PostEdge",
+                        "concreteType": "DayEdge",
                         "name": "edges",
                         "plural": true,
                         "selections": [
@@ -204,7 +323,7 @@ const batch /*: ConcreteBatch*/ = {
                             "kind": "LinkedField",
                             "alias": null,
                             "args": null,
-                            "concreteType": "Post",
+                            "concreteType": "Day",
                             "name": "node",
                             "plural": false,
                             "selections": [
@@ -263,7 +382,7 @@ const batch /*: ConcreteBatch*/ = {
                     ]
                   }
                 ],
-                "storageKey": "allPosts{\"last\":100,\"orderBy\":\"createdAt_DESC\"}"
+                "storageKey": "allDays{\"last\":100,\"orderBy\":\"createdAt_DESC\"}"
               },
               {
                 "kind": "LinkedHandle",
@@ -279,12 +398,12 @@ const batch /*: ConcreteBatch*/ = {
                     "kind": "Literal",
                     "name": "orderBy",
                     "value": "createdAt_DESC",
-                    "type": "PostOrderBy"
+                    "type": "DayOrderBy"
                   }
                 ],
                 "handle": "connection",
-                "name": "allPosts",
-                "key": "ListPage_allPosts",
+                "name": "allDays",
+                "key": "ListPage_allDays",
                 "filters": []
               }
             ]
@@ -294,7 +413,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query AppAllPostQuery {\n  viewer {\n    ...ListPage_viewer\n    id\n  }\n}\n\nfragment ListPage_viewer on Viewer {\n  allPosts(last: 100, orderBy: createdAt_DESC) {\n    edges {\n      node {\n        ...Post_post\n        id\n      }\n    }\n    ... on PostConnection {\n      edges {\n        cursor\n        node {\n          __typename\n          id\n        }\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n        hasPreviousPage\n        startCursor\n      }\n    }\n  }\n}\n\nfragment Post_post on Post {\n  id\n  description\n  imageUrl\n}\n"
+  "text": "query AppAllPostQuery {\n  viewer {\n    ...ListPage_viewer\n    id\n  }\n}\n\nfragment ListPage_viewer on Viewer {\n  allDays(last: 100, orderBy: createdAt_DESC) {\n    edges {\n      node {\n        ...Day_day\n        id\n      }\n    }\n    ... on DayConnection {\n      edges {\n        cursor\n        node {\n          __typename\n          id\n        }\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n        hasPreviousPage\n        startCursor\n      }\n    }\n  }\n}\n\nfragment Day_day on Day {\n  id\n  date\n  cooking {\n    edges {\n      node {\n        ...Bai_bai\n        id\n      }\n    }\n  }\n  eating {\n    edges {\n      node {\n        ...Bai_bai\n        id\n      }\n    }\n  }\n}\n\nfragment Bai_bai on Bais {\n  id\n  name\n}\n"
 };
 
 module.exports = batch;

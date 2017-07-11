@@ -1,5 +1,5 @@
-﻿input AddToBaisOnDaysBaisInput {
-  eatingOnDaysDaysId: ID!
+input AddToBaisOnDaysBaisInput {
+  eatingOnDaysDayId: ID!
   eatingBaisId: ID!
   clientMutationId: String!
 }
@@ -8,30 +8,30 @@ type AddToBaisOnDaysPayload {
   viewer: Viewer!
   clientMutationId: String!
   eatingBais: Bais
-  eatingOnDaysDays: Days
+  eatingOnDaysDay: Day
   eatingBaisEdge: BaisEdge
-  eatingOnDaysDaysEdge: DaysEdge
+  eatingOnDaysDayEdge: DayEdge
 }
 
-input AddToDaysOnBaisDaysInput {
+input AddToDaysOnBaisDayInput {
   cookingBaisId: ID!
-  cookingOnDaysDaysId: ID!
+  cookingOnDaysDayId: ID!
   clientMutationId: String!
 }
 
 type AddToDaysOnBaisPayload {
   viewer: Viewer!
   clientMutationId: String!
-  cookingOnDaysDays: Days
+  cookingOnDaysDay: Day
   cookingBais: Bais
-  cookingOnDaysDaysEdge: DaysEdge
+  cookingOnDaysDayEdge: DayEdge
   cookingBaisEdge: BaisEdge
 }
 
 type Bais implements Node {
-  cookingOnDays(filter: DaysFilter): Days
+  cookingOnDays(filter: DayFilter): Day
   createdAt: DateTime!
-  eatingOnDays(filter: DaysFilter, orderBy: DaysOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): DaysConnection
+  eatingOnDays(filter: DayFilter, orderBy: DayOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): DayConnection
   id: ID!
   name: String!
   updatedAt: DateTime!
@@ -49,73 +49,73 @@ type BaisConnection {
   count: Int!
 }
 
-input BaiscookingOnDaysDays {
+input BaiscookingOnDaysDay {
   date: DateTime!
   cookingIds: [ID!]
-  cooking: [BaiscookingOnDaysDayscookingBais!]
+  cooking: [BaiscookingOnDaysDaycookingBais!]
   eatingIds: [ID!]
-  eating: [BaiscookingOnDaysDayseatingBais!]
+  eating: [BaiscookingOnDaysDayeatingBais!]
 }
 
-input BaiscookingOnDaysDayscookingBais {
+input BaiscookingOnDaysDaycookingBais {
   name: String!
   eatingOnDaysIds: [ID!]
-  eatingOnDays: [BaiscookingOnDaysDayscookingBaiseatingOnDaysDays!]
+  eatingOnDays: [BaiscookingOnDaysDaycookingBaiseatingOnDaysDay!]
 }
 
-input BaiscookingOnDaysDayscookingBaiseatingOnDaysDays {
+input BaiscookingOnDaysDaycookingBaiseatingOnDaysDay {
   date: DateTime!
   cookingIds: [ID!]
   eatingIds: [ID!]
 }
 
-input BaiscookingOnDaysDayseatingBais {
+input BaiscookingOnDaysDayeatingBais {
   name: String!
   eatingOnDaysIds: [ID!]
-  eatingOnDays: [BaiscookingOnDaysDayseatingBaiseatingOnDaysDays!]
+  eatingOnDays: [BaiscookingOnDaysDayeatingBaiseatingOnDaysDay!]
 }
 
-input BaiscookingOnDaysDayseatingBaiseatingOnDaysDays {
+input BaiscookingOnDaysDayeatingBaiseatingOnDaysDay {
   date: DateTime!
   cookingIds: [ID!]
   eatingIds: [ID!]
 }
 
-input BaiseatingOnDaysDays {
+input BaiseatingOnDaysDay {
   date: DateTime!
   cookingIds: [ID!]
-  cooking: [BaiseatingOnDaysDayscookingBais!]
+  cooking: [BaiseatingOnDaysDaycookingBais!]
   eatingIds: [ID!]
-  eating: [BaiseatingOnDaysDayseatingBais!]
+  eating: [BaiseatingOnDaysDayeatingBais!]
 }
 
-input BaiseatingOnDaysDayscookingBais {
+input BaiseatingOnDaysDaycookingBais {
   name: String!
   eatingOnDaysIds: [ID!]
-  eatingOnDays: [BaiseatingOnDaysDayscookingBaiseatingOnDaysDays!]
+  eatingOnDays: [BaiseatingOnDaysDaycookingBaiseatingOnDaysDay!]
 }
 
-input BaiseatingOnDaysDayscookingBaiseatingOnDaysDays {
+input BaiseatingOnDaysDaycookingBaiseatingOnDaysDay {
   date: DateTime!
   cookingIds: [ID!]
   eatingIds: [ID!]
 }
 
-input BaiseatingOnDaysDayseatingBais {
+input BaiseatingOnDaysDayeatingBais {
   name: String!
   cookingOnDaysId: ID
-  cookingOnDays: BaiseatingOnDaysDayseatingBaiscookingOnDaysDays
+  cookingOnDays: BaiseatingOnDaysDayeatingBaiscookingOnDaysDay
   eatingOnDaysIds: [ID!]
-  eatingOnDays: [BaiseatingOnDaysDayseatingBaiseatingOnDaysDays!]
+  eatingOnDays: [BaiseatingOnDaysDayeatingBaiseatingOnDaysDay!]
 }
 
-input BaiseatingOnDaysDayseatingBaiscookingOnDaysDays {
+input BaiseatingOnDaysDayeatingBaiscookingOnDaysDay {
   date: DateTime!
   cookingIds: [ID!]
   eatingIds: [ID!]
 }
 
-input BaiseatingOnDaysDayseatingBaiseatingOnDaysDays {
+input BaiseatingOnDaysDayeatingBaiseatingOnDaysDay {
   date: DateTime!
   cookingIds: [ID!]
   eatingIds: [ID!]
@@ -260,10 +260,10 @@ input BaisFilter {
 
   # All values greater than or equal the given value.
   updatedAt_gte: DateTime
-  cookingOnDays: DaysFilter
-  eatingOnDays_every: DaysFilter
-  eatingOnDays_some: DaysFilter
-  eatingOnDays_none: DaysFilter
+  cookingOnDays: DayFilter
+  eatingOnDays_every: DayFilter
+  eatingOnDays_some: DayFilter
+  eatingOnDays_none: DayFilter
 }
 
 enum BaisOrderBy {
@@ -286,17 +286,17 @@ scalar BigInt
 input CreateBais {
   name: String!
   cookingOnDaysId: ID
-  cookingOnDays: BaiscookingOnDaysDays
+  cookingOnDays: BaiscookingOnDaysDay
   eatingOnDaysIds: [ID!]
-  eatingOnDays: [BaiseatingOnDaysDays!]
+  eatingOnDays: [BaiseatingOnDaysDay!]
 }
 
 input CreateBaisInput {
   name: String!
   cookingOnDaysId: ID
-  cookingOnDays: BaiscookingOnDaysDays
+  cookingOnDays: BaiscookingOnDaysDay
   eatingOnDaysIds: [ID!]
-  eatingOnDays: [BaiseatingOnDaysDays!]
+  eatingOnDays: [BaiseatingOnDaysDay!]
   clientMutationId: String!
 }
 
@@ -305,31 +305,31 @@ type CreateBaisPayload {
   clientMutationId: String!
   bais: Bais
   edge: BaisEdge
-  cookingOnDays: Days
+  cookingOnDays: Day
 }
 
-input CreateDays {
+input CreateDay {
   date: DateTime!
   cookingIds: [ID!]
-  cooking: [DayscookingBais!]
+  cooking: [DaycookingBais!]
   eatingIds: [ID!]
-  eating: [DayseatingBais!]
+  eating: [DayeatingBais!]
 }
 
-input CreateDaysInput {
+input CreateDayInput {
   date: DateTime!
   cookingIds: [ID!]
-  cooking: [DayscookingBais!]
+  cooking: [DaycookingBais!]
   eatingIds: [ID!]
-  eating: [DayseatingBais!]
+  eating: [DayeatingBais!]
   clientMutationId: String!
 }
 
-type CreateDaysPayload {
+type CreateDayPayload {
   viewer: Viewer!
   clientMutationId: String!
-  days: Days
-  edge: DaysEdge
+  day: Day
+  edge: DayEdge
 }
 
 input CreateFile {
@@ -375,7 +375,7 @@ type CreateUserPayload {
 
 scalar DateTime
 
-type Days implements Node {
+type Day implements Node {
   cooking(filter: BaisFilter, orderBy: BaisOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): BaisConnection
   createdAt: DateTime!
   date: DateTime!
@@ -385,106 +385,106 @@ type Days implements Node {
 }
 
 # A connection to a list of items.
-type DaysConnection {
+type DayConnection {
   # Information to aid in pagination.
   pageInfo: PageInfo!
 
   # A list of edges.
-  edges: [DaysEdge]
+  edges: [DayEdge]
 
   # Count of filtered result set without considering pagination arguments
   count: Int!
 }
 
-input DayscookingBais {
+input DaycookingBais {
   name: String!
   eatingOnDaysIds: [ID!]
-  eatingOnDays: [DayscookingBaiseatingOnDaysDays!]
+  eatingOnDays: [DaycookingBaiseatingOnDaysDay!]
 }
 
-input DayscookingBaiseatingOnDaysDays {
+input DaycookingBaiseatingOnDaysDay {
   date: DateTime!
   cookingIds: [ID!]
-  cooking: [DayscookingBaiseatingOnDaysDayscookingBais!]
+  cooking: [DaycookingBaiseatingOnDaysDaycookingBais!]
   eatingIds: [ID!]
-  eating: [DayscookingBaiseatingOnDaysDayseatingBais!]
+  eating: [DaycookingBaiseatingOnDaysDayeatingBais!]
 }
 
-input DayscookingBaiseatingOnDaysDayscookingBais {
+input DaycookingBaiseatingOnDaysDaycookingBais {
   name: String!
   cookingOnDaysId: ID
   eatingOnDaysIds: [ID!]
 }
 
-input DayscookingBaiseatingOnDaysDayseatingBais {
+input DaycookingBaiseatingOnDaysDayeatingBais {
   name: String!
   cookingOnDaysId: ID
   eatingOnDaysIds: [ID!]
 }
 
-input DayseatingBais {
+input DayeatingBais {
   name: String!
   cookingOnDaysId: ID
-  cookingOnDays: DayseatingBaiscookingOnDaysDays
+  cookingOnDays: DayeatingBaiscookingOnDaysDay
   eatingOnDaysIds: [ID!]
-  eatingOnDays: [DayseatingBaiseatingOnDaysDays!]
+  eatingOnDays: [DayeatingBaiseatingOnDaysDay!]
 }
 
-input DayseatingBaiscookingOnDaysDays {
+input DayeatingBaiscookingOnDaysDay {
   date: DateTime!
   cookingIds: [ID!]
-  cooking: [DayseatingBaiscookingOnDaysDayscookingBais!]
+  cooking: [DayeatingBaiscookingOnDaysDaycookingBais!]
   eatingIds: [ID!]
-  eating: [DayseatingBaiscookingOnDaysDayseatingBais!]
+  eating: [DayeatingBaiscookingOnDaysDayeatingBais!]
 }
 
-input DayseatingBaiscookingOnDaysDayscookingBais {
+input DayeatingBaiscookingOnDaysDaycookingBais {
   name: String!
   cookingOnDaysId: ID
   eatingOnDaysIds: [ID!]
 }
 
-input DayseatingBaiscookingOnDaysDayseatingBais {
+input DayeatingBaiscookingOnDaysDayeatingBais {
   name: String!
   cookingOnDaysId: ID
   eatingOnDaysIds: [ID!]
 }
 
-input DayseatingBaiseatingOnDaysDays {
+input DayeatingBaiseatingOnDaysDay {
   date: DateTime!
   cookingIds: [ID!]
-  cooking: [DayseatingBaiseatingOnDaysDayscookingBais!]
+  cooking: [DayeatingBaiseatingOnDaysDaycookingBais!]
   eatingIds: [ID!]
-  eating: [DayseatingBaiseatingOnDaysDayseatingBais!]
+  eating: [DayeatingBaiseatingOnDaysDayeatingBais!]
 }
 
-input DayseatingBaiseatingOnDaysDayscookingBais {
+input DayeatingBaiseatingOnDaysDaycookingBais {
   name: String!
   cookingOnDaysId: ID
   eatingOnDaysIds: [ID!]
 }
 
-input DayseatingBaiseatingOnDaysDayseatingBais {
+input DayeatingBaiseatingOnDaysDayeatingBais {
   name: String!
   cookingOnDaysId: ID
   eatingOnDaysIds: [ID!]
 }
 
 # An edge in a connection.
-type DaysEdge {
+type DayEdge {
   # The item at the end of the edge.
-  node: Days!
+  node: Day!
 
   # A cursor for use in pagination.
   cursor: String!
 }
 
-input DaysFilter {
+input DayFilter {
   # Logical AND on all given filters.
-  AND: [DaysFilter!]
+  AND: [DayFilter!]
 
   # Logical OR on all given filters.
-  OR: [DaysFilter!]
+  OR: [DayFilter!]
   createdAt: DateTime
 
   # All values that are not equal to given value.
@@ -599,7 +599,7 @@ input DaysFilter {
   eating_none: BaisFilter
 }
 
-enum DaysOrderBy {
+enum DayOrderBy {
   createdAt_ASC
   createdAt_DESC
   date_ASC
@@ -620,20 +620,20 @@ type DeleteBaisPayload {
   clientMutationId: String!
   bais: Bais
   edge: BaisEdge
-  cookingOnDays: Days
+  cookingOnDays: Day
   deletedId: ID
 }
 
-input DeleteDaysInput {
+input DeleteDayInput {
   id: ID!
   clientMutationId: String!
 }
 
-type DeleteDaysPayload {
+type DeleteDayPayload {
   viewer: Viewer!
   clientMutationId: String!
-  days: Days
-  edge: DaysEdge
+  day: Day
+  edge: DayEdge
   deletedId: ID
 }
 
@@ -1007,28 +1007,28 @@ scalar Long
 
 type Mutation {
   createBais(input: CreateBaisInput!): CreateBaisPayload
-  createDays(input: CreateDaysInput!): CreateDaysPayload
+  createDay(input: CreateDayInput!): CreateDayPayload
   createFile(input: CreateFileInput!): CreateFilePayload
   createPost(input: CreatePostInput!): CreatePostPayload
   updateBais(input: UpdateBaisInput!): UpdateBaisPayload
-  updateDays(input: UpdateDaysInput!): UpdateDaysPayload
+  updateDay(input: UpdateDayInput!): UpdateDayPayload
   updateFile(input: UpdateFileInput!): UpdateFilePayload
   updatePost(input: UpdatePostInput!): UpdatePostPayload
   updateUser(input: UpdateUserInput!): UpdateUserPayload
   updateOrCreateBais(input: UpdateOrCreateBaisInput!): UpdateOrCreateBaisPayload
-  updateOrCreateDays(input: UpdateOrCreateDaysInput!): UpdateOrCreateDaysPayload
+  updateOrCreateDay(input: UpdateOrCreateDayInput!): UpdateOrCreateDayPayload
   updateOrCreateFile(input: UpdateOrCreateFileInput!): UpdateOrCreateFilePayload
   updateOrCreatePost(input: UpdateOrCreatePostInput!): UpdateOrCreatePostPayload
   updateOrCreateUser(input: UpdateOrCreateUserInput!): UpdateOrCreateUserPayload
   deleteBais(input: DeleteBaisInput!): DeleteBaisPayload
-  deleteDays(input: DeleteDaysInput!): DeleteDaysPayload
+  deleteDay(input: DeleteDayInput!): DeleteDayPayload
   deleteFile(input: DeleteFileInput!): DeleteFilePayload
   deletePost(input: DeletePostInput!): DeletePostPayload
   deleteUser(input: DeleteUserInput!): DeleteUserPayload
   addToBaisOnDays(input: AddToBaisOnDaysBaisInput!): AddToBaisOnDaysPayload
-  addToDaysOnBais(input: AddToDaysOnBaisDaysInput!): AddToDaysOnBaisPayload
+  addToDaysOnBais(input: AddToDaysOnBaisDayInput!): AddToDaysOnBaisPayload
   removeFromBaisOnDays(input: RemoveFromBaisOnDaysBaisInput!): RemoveFromBaisOnDaysPayload
-  removeFromDaysOnBais(input: RemoveFromDaysOnBaisDaysInput!): RemoveFromDaysOnBaisPayload
+  removeFromDaysOnBais(input: RemoveFromDaysOnBaisDayInput!): RemoveFromDaysOnBaisPayload
   createUser(input: SignupUserInput!): CreateUserPayload!
 }
 
@@ -1278,7 +1278,7 @@ type Query {
 }
 
 input RemoveFromBaisOnDaysBaisInput {
-  eatingOnDaysDaysId: ID!
+  eatingOnDaysDayId: ID!
   eatingBaisId: ID!
   clientMutationId: String!
 }
@@ -1287,23 +1287,23 @@ type RemoveFromBaisOnDaysPayload {
   viewer: Viewer!
   clientMutationId: String!
   eatingBais: Bais
-  eatingOnDaysDays: Days
+  eatingOnDaysDay: Day
   eatingBaisEdge: BaisEdge
-  eatingOnDaysDaysEdge: DaysEdge
+  eatingOnDaysDayEdge: DayEdge
 }
 
-input RemoveFromDaysOnBaisDaysInput {
+input RemoveFromDaysOnBaisDayInput {
   cookingBaisId: ID!
-  cookingOnDaysDaysId: ID!
+  cookingOnDaysDayId: ID!
   clientMutationId: String!
 }
 
 type RemoveFromDaysOnBaisPayload {
   viewer: Viewer!
   clientMutationId: String!
-  cookingOnDaysDays: Days
+  cookingOnDaysDay: Day
   cookingBais: Bais
-  cookingOnDaysDaysEdge: DaysEdge
+  cookingOnDaysDayEdge: DayEdge
   cookingBaisEdge: BaisEdge
 }
 
@@ -1315,18 +1315,18 @@ input UpdateBais {
   id: ID!
   name: String
   cookingOnDaysId: ID
-  cookingOnDays: BaiscookingOnDaysDays
+  cookingOnDays: BaiscookingOnDaysDay
   eatingOnDaysIds: [ID!]
-  eatingOnDays: [BaiseatingOnDaysDays!]
+  eatingOnDays: [BaiseatingOnDaysDay!]
 }
 
 input UpdateBaisInput {
   id: ID!
   name: String
   cookingOnDaysId: ID
-  cookingOnDays: BaiscookingOnDaysDays
+  cookingOnDays: BaiscookingOnDaysDay
   eatingOnDaysIds: [ID!]
-  eatingOnDays: [BaiseatingOnDaysDays!]
+  eatingOnDays: [BaiseatingOnDaysDay!]
   clientMutationId: String!
 }
 
@@ -1335,33 +1335,33 @@ type UpdateBaisPayload {
   clientMutationId: String!
   bais: Bais
   edge: BaisEdge
-  cookingOnDays: Days
+  cookingOnDays: Day
 }
 
-input UpdateDays {
+input UpdateDay {
   date: DateTime
   id: ID!
   cookingIds: [ID!]
-  cooking: [DayscookingBais!]
+  cooking: [DaycookingBais!]
   eatingIds: [ID!]
-  eating: [DayseatingBais!]
+  eating: [DayeatingBais!]
 }
 
-input UpdateDaysInput {
+input UpdateDayInput {
   date: DateTime
   id: ID!
   cookingIds: [ID!]
-  cooking: [DayscookingBais!]
+  cooking: [DaycookingBais!]
   eatingIds: [ID!]
-  eating: [DayseatingBais!]
+  eating: [DayeatingBais!]
   clientMutationId: String!
 }
 
-type UpdateDaysPayload {
+type UpdateDayPayload {
   viewer: Viewer!
   clientMutationId: String!
-  days: Days
-  edge: DaysEdge
+  day: Day
+  edge: DayEdge
 }
 
 input UpdateFile {
@@ -1393,20 +1393,20 @@ type UpdateOrCreateBaisPayload {
   clientMutationId: String!
   bais: Bais
   edge: BaisEdge
-  cookingOnDays: Days
+  cookingOnDays: Day
 }
 
-input UpdateOrCreateDaysInput {
-  update: UpdateDays!
-  create: CreateDays!
+input UpdateOrCreateDayInput {
+  update: UpdateDay!
+  create: CreateDay!
   clientMutationId: String!
 }
 
-type UpdateOrCreateDaysPayload {
+type UpdateOrCreateDayPayload {
   viewer: Viewer!
   clientMutationId: String!
-  days: Days
-  edge: DaysEdge
+  day: Day
+  edge: DayEdge
 }
 
 input UpdateOrCreateFileInput {
@@ -1614,13 +1614,13 @@ enum UserOrderBy {
 # This is the famous Relay viewer object
 type Viewer {
   allBaises(filter: BaisFilter, orderBy: BaisOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): BaisConnection!
-  allDayses(filter: DaysFilter, orderBy: DaysOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): DaysConnection!
+  allDays(filter: DayFilter, orderBy: DayOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): DayConnection!
   allFiles(filter: FileFilter, orderBy: FileOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
   allPosts(filter: PostFilter, orderBy: PostOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   allUsers(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   user: User
   Bais(id: ID): Bais
-  Days(date: DateTime, id: ID): Days
+  Day(date: DateTime, id: ID): Day
   File(id: ID, secret: String, url: String): File
   Post(id: ID): Post
   User(id: ID): User
